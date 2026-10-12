@@ -1,6 +1,8 @@
-
 services:
   workshop:
     build: .
+    working_dir: /workshop
+    volumes:
+      - .:/workshop
     stdin_open: true
     tty: true

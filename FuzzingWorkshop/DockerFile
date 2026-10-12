@@ -2,6 +2,4 @@ FROM aflplusplus/aflplusplus:stable
 
 WORKDIR /workshop
 
-COPY examples/ /workshop/examples/
-
 CMD ["/bin/bash"]
