@@ -27,9 +27,6 @@ The workshop runs 90 minutes over 17 slides, and about 36 minutes of it is hands
 | 16 | Conclusions | NEW | Both | 1:26 to 1:29 |
 | 17 | Sources and questions | NEW | Both | 1:29 to 1:30 |
 
-If you run late, shorten slide 8 to 2 minutes and the break to 3. If you run early, give Exercise 2 more time for the stretch tasks rather than adding slides.
-
-Course requirements covered: all content in the GitHub repo, Docker image only (no installs), sources cited, a participant assignment, and active participation from the audience at least five times (icebreaker, exercise 1 debrief, demo prediction, exercise 2, Kahoot).
 
 ## 2. Setup and commands for the demo and the exercise
 
