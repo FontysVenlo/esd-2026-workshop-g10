@@ -184,20 +184,7 @@ Lines in **bold with a name** are spoken. Text in [brackets] is an action. Sourc
 
 **Francesco:** So it learns which inputs are interesting without reading the source code. This is called coverage-guided greybox fuzzing: grey, because it looks inside the program a little, through the instrumentation, but doesn't need a full understanding of it. The name AFL stands for 'American fuzzy lop', which is a breed of rabbit.
 
-### Slide 10: Exercise 1, become the fuzzer (Anna starts, both, 8 min)
-
-**Anna:** Now it's your turn to be the fuzzer. Work in pairs for 3 minutes. On the screen is a test application with a username field and an age field. Your mission has three steps: think, break, record. Think of unusual inputs, try to trigger unexpected behaviour, and write down anything interesting.
-
-**Francesco:** To help you, think about three things. Format: what if it's text instead of a number, or contains special characters? Length: what if it's empty or a million characters long? Value: what if it's zero, negative, huge, or right on a boundary like 149, 150 and 151? Start now.
-
-[3 minutes. Walk around and ask pairs what they have.]
-
-**Anna:** Time. Who has the weirdest input? [Write answers on the board in three columns: format, length, value. Take 4 minutes.]
-
-**Francesco:** Notice what you did: you generated inputs, tried them, watched for strange behaviour and recorded the interesting ones. That's the fuzz testing process from slide 5, done by hand. You found a handful in three minutes. Now let's see a fuzzer do it.
-
-### Slide 11: Live demo with AFL++ (Francesco drives, Anna narrates, 8 min) NEW
-
+### Slide 10: Live demo with AFL++ (Francesco drives, Anna narrates, 8 min) NEW
 **Slide content:** the 12 lines of `demo.c` on the left and the five commands from section 2 on the right. Keep a terminal open next to the slide.
 
 **Anna:** This is our target program. It reads one character from standard input, and if that character is a capital X it calls abort(), which crashes the program. Otherwise it exits normally. Here is a question for you: what input crashes it? [Pause.] Yes, X. That's easy to see in 12 lines. Now imagine a million lines, where nobody knows which input is the dangerous one. So let's pretend we don't know, and let the fuzzer find it.
@@ -213,6 +200,19 @@ Lines in **bold with a name** are spoken. Text in [brackets] is an action. Sourc
 **Francesco:** And the best part is that it saved the input. [Run `./demo < "$f"; echo $?`.] We can replay it at any time: the program aborts, and the exit code is 134. That's the reproducibility advantage we'll come back to.
 
 **Anna:** One more point: this fuzzer only knew the program crashed. It had no idea that crashing was 'wrong' in any deeper sense. We'll come back to that in the limitations. Now let's take a 4 minute break. If your Docker image isn't built yet, come to us.
+
+
+### Slide 11: Exercise 1, become the fuzzer (Anna starts, both, 8 min)
+
+**Anna:** Now it's your turn to be the fuzzer. Work in pairs for 3 minutes. On the screen is a test application with a username field and an age field. Your mission has three steps: think, break, record. Think of unusual inputs, try to trigger unexpected behaviour, and write down anything interesting.
+
+**Francesco:** To help you, think about three things. Format: what if it's text instead of a number, or contains special characters? Length: what if it's empty or a million characters long? Value: what if it's zero, negative, huge, or right on a boundary like 149, 150 and 151? Start now.
+
+[3 minutes. Walk around and ask pairs what they have.]
+
+**Anna:** Time. Who has the weirdest input? [Write answers on the board in three columns: format, length, value. Take 4 minutes.]
+
+**Francesco:** Notice what you did: you generated inputs, tried them, watched for strange behaviour and recorded the interesting ones. That's the fuzz testing process from slide 5, done by hand. You found a handful in three minutes. Now let's see a fuzzer do it.
 
 ### Break, 0:48 to 0:52
 
