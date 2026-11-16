@@ -187,19 +187,122 @@ Lines in **bold with a name** are spoken. Text in [brackets] is an action. Sourc
 ### Slide 10: Live demo with AFL++ (Francesco drives, Anna narrates, 8 min) NEW
 **Slide content:** the 12 lines of `demo.c` on the left and the five commands from section 2 on the right. Keep a terminal open next to the slide.
 
-**Anna:** This is our target program. It reads one character from standard input, and if that character is a capital X it calls abort(), which crashes the program. Otherwise it exits normally. Here is a question for you: what input crashes it? [Pause.] Yes, X. That's easy to see in 12 lines. Now imagine a million lines, where nobody knows which input is the dangerous one. So let's pretend we don't know, and let the fuzzer find it.
+## Before you start
 
-**Francesco:** [Run `docker compose run --rm workshop`.] We're inside the container. First I compile the program with AFL++'s compiler. [Run `afl-cc exercises/demo/demo.c -o demo`.] This adds the instrumentation I described on the last slide.
+- Start Docker Desktop first. If it isn't running, you get "Cannot connect to the Docker daemon".
+- Zoom the terminal text so the back row can read it. The AFL++ status screen needs a window at least 79 by 24 characters.
+- Open the terminal in the `esd-2026-workshop-g10` folder.
 
-**Francesco:** Now a seed input. [Run `mkdir -p /tmp/in && printf 'A' > /tmp/in/seed`.] The seed is just the letter A, which is harmless. Now we start the fuzzer. [Run `afl-fuzz -i /tmp/in -o /tmp/out -- ./demo`.]
+## Step 1: Start the container
 
-**Anna:** While it runs, look at the screen. 'Total execs' is how many times it ran our program, and 'exec speed' is how fast. It's thousands per second. Look for 'saved crashes'. [Wait for the counter to go to 1, usually within seconds.] There: it found a crash.
+**Francesco types:**
 
-**Francesco:** [Stop with Ctrl+C.] Let's look at what it found. [Run `ls /tmp/out/default/crashes`, set `f`, then `od -c "$f"`.] The file name contains 'sig:06', which is signal 6, the abort signal. And inside the file, the first character is an X. The fuzzer found the one input out of 256 possible first bytes that breaks the program, without us telling it.
+```bash
+cd FuzzingWorkshop
+docker compose run --rm workshop
+```
 
-**Francesco:** And the best part is that it saved the input. [Run `./demo < "$f"; echo $?`.] We can replay it at any time: the program aborts, and the exit code is 134. That's the reproducibility advantage we'll come back to.
+**Anna says:** "Everything runs inside a Docker container, so you don't need to install anything. We're now inside it."
 
-**Anna:** One more point: this fuzzer only knew the program crashed. It had no idea that crashing was 'wrong' in any deeper sense. We'll come back to that in the limitations. Now let's take a 4 minute break. If your Docker image isn't built yet, come to us.
+## Step 2: Settings
+
+**Francesco types:**
+
+```bash
+export AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 AFL_NO_AFFINITY=1
+```
+
+**Anna says:** "These three settings stop AFL++ complaining about things Docker doesn't allow. You can ignore them."
+
+## Step 3: Show the code and ask the audience
+
+**Francesco types:**
+
+```bash
+cat exercises/demo/demo.c
+```
+
+**Anna says:** "This is our target. It reads one character. If it's a capital X, it calls abort(), which crashes the program. Otherwise it exits normally. What input crashes it?" [Wait for 'X'.] "Right. That's easy in 12 lines. Imagine a million lines where nobody knows the dangerous input. Let's pretend we don't know, and let the fuzzer find it."
+
+## Step 4: Compile with AFL++
+
+**Francesco types:**
+
+```bash
+afl-cc exercises/demo/demo.c -o demo
+```
+
+**Anna says:** "We compile with AFL++'s own compiler. Look at the line that says it instrumented 3 locations. It added markers to the program so the fuzzer can see which parts of the code each input reaches."
+
+## Step 5: Create a seed
+
+**Francesco types:**
+
+```bash
+mkdir -p /tmp/in
+printf 'A' > /tmp/in/seed
+```
+
+**Anna says:** "The fuzzer needs a starting input, called a seed. Ours is just the letter A, which is harmless. It does not crash the program."
+
+## Step 6: Run the fuzzer
+
+**Francesco types:**
+
+```bash
+afl-fuzz -i /tmp/in -o /tmp/out -- ./demo
+```
+
+**Anna says while it runs** (point at the screen):
+
+- "'Exec speed' is how many times per second it runs our program. In our test run it was almost 10,000 per second. Nobody can type that fast."
+- "'Total execs' counts the tries so far. It was already over 80,000 after 8 seconds."
+- "Now look at 'saved crashes'." [Wait for it to show 1.] "It found a crash."
+- "You may also see 'none yet (odd, check syntax!)' next to 'last new find'. That's normal here, because our program is tiny and has almost nothing to discover."
+- "'Total crashes' said 299, but 'saved' was only 1. AFL++ keeps only crashes that look different from each other, so it doesn't fill your disk with duplicates."
+
+**Francesco:** Once "saved crashes" shows 1 (about 8 seconds in our test), press `Ctrl+C`.
+
+## Step 7: Look at the result
+
+**Francesco types:**
+
+```bash
+ls /tmp/out/default/crashes
+```
+
+**Anna says:** "Here's the crash file. Look at the name: `sig:06` means signal 6, which is the abort signal. `time:54` means it found it after 54 milliseconds, and `execs:213` means after just 213 tries."
+
+**Francesco types:**
+
+```bash
+f=$(find /tmp/out/default/crashes -type f -name 'id:*' | head -n 1)
+od -c $f
+```
+
+**Anna says:** "This shows the content of the file: a row of capital X's. The fuzzer found the one letter out of 256 possible first bytes that breaks the program, without us telling it. The extra X's are just leftovers from its mutations. The program only reads the first character."
+
+## Step 8: Replay the crash
+
+**Francesco types:**
+
+```bash
+./demo < $f; echo $?
+```
+
+**Anna says:** "And because the input was saved, we can replay it any time. The program aborts, and the exit code is 134. That's reproducibility: you can give this file to a developer and they will see the same crash."
+
+## Closing the demo
+
+**Francesco says:** "So in a few seconds a fuzzer found a bug without reading the code."
+
+**Anna says:** "One thing to remember: it knew the program crashed, but not what 'wrong' means. We'll come back to that in the limitations. Now let's take a 4-minute break, and then you do the same with a program you haven't seen."
+
+#### If something goes wrong
+
+- **Docker daemon error:** start Docker Desktop, wait for the whale icon to stop moving, and run step 1 again.
+- **"Output directory exists" when you repeat the demo:** run `rm -rf /tmp/out` first. The folder disappears when you exit the container anyway.
+- **It takes longer than 20 seconds to find the crash:** stop it anyway once "saved crashes" shows 1, or play your recording.
 
 
 ### Slide 11: Exercise 1, become the fuzzer (Anna starts, both, 8 min)
