@@ -106,12 +106,6 @@ Optional: replay the tiny crashing input yourself and check the exit code.
 
 The program should abort, and the number printed is the exit code (usually 134 for an abort).
 
-### Step 7: Stretch (if you finish early)
-
-Pick one:
-
-- Change the crash condition in the C file, compile again, and fuzz with a **fresh output folder** (for example `/tmp/out3`). Does AFL++ still find it? How fast?
-- Try a different seed: create a new folder (`mkdir /tmp/in3`), put a different harmless input in it (for example `printf 'a' > /tmp/in3/seed`), and run `afl-fuzz -i /tmp/in3 -o /tmp/out3 -- ./exercise`. Compare how quickly AFL++ finds a crash.
 
 ## Check yourself
 
