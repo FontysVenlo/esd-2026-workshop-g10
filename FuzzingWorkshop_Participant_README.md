@@ -29,32 +29,7 @@ The following commands run **inside the container** at `/workshop`:
 export AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 AFL_NO_AFFINITY=1
 ```
 
-## Exercise 1 — Become the fuzzer (pairs)
-
-Think of unusual inputs for a username and age form. Consider **format**, **length**, and **boundary values**. Record any unexpected behavior and be ready to share it.
-
-## Live demo — Watch AFL++ find a crash
-
-Follow along as the presenters demonstrate:
-
-```bash
-afl-cc exercises/demo/demo.c -o demo
-mkdir -p /tmp/in
-printf 'A' > /tmp/in/seed
-afl-fuzz -i /tmp/in -o /tmp/out -- ./demo
-```
-
-Stop AFL++ with `Ctrl+C` after it finds a crash. Inspect and replay it:
-
-```bash
-ls /tmp/out/default/crashes
-f=$(find /tmp/out/default/crashes -type f -name 'id:*' | head -n 1)
-od -c "$f"
-./demo < "$f"
-echo $?
-```
-
-## Exercise 2 — Find the crash (20 minutes)
+## Exercise 1 — Find the crash (20 minutes)
 
 **Do not read `exercises/participant/participant.c` until step 5.**
 
