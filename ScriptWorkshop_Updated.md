@@ -92,7 +92,6 @@ wc -c /tmp/min
 
 ## 3. Script, slide by slide (part 1: intro, 0:00 to 0:32)
 
-Lines in **bold with a name** are spoken. Text in [brackets] is an action. Sources are named out loud so the graders hear the research.
 
 ### Slide 1: Title and agenda (Francesco, 2 min)
 
@@ -100,7 +99,7 @@ Lines in **bold with a name** are spoken. Text in [brackets] is an action. Sourc
 
 **Francesco:** In the next 90 minutes you'll learn what fuzz testing is, how it differs from the testing you already know, and then you'll do it yourselves: first by hand, then with a real fuzzer called AFL++ that runs in Docker.
 
-**Anna:** [Point at the agenda.] We start with an icebreaker and an introduction, then a first exercise, a live demo, a short break, the main exercise, then advantages and limitations, a Kahoot quiz and conclusions. Ask questions whenever you like. Everything we show today is in our GitHub repository. The Docker instructions are in the FuzzingWorkshop folder.
+**Anna:** [Point at the agenda.] We start with an icebreaker and an introduction, then a first exercise, a live demo,  the main exercise, then advantages and limitations, a Kahoot quiz and conclusions. Ask questions whenever you like. Everything we show today is in our GitHub repository. The Docker instructions are in the FuzzingWorkshop folder.
 
 **Francesco:** Quick check before we start: who already has the Docker image built? [Hands.] If you don't, open `FuzzingWorkshop` and run `docker compose build` now. It works in the background while we talk.
 
