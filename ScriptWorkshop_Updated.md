@@ -115,7 +115,7 @@ wc -c /tmp/min
 
 **Anna:** Thanks Francesco. Fuzz testing, or fuzzing, is a technique where we feed an application random, invalid, unexpected or malformed input and watch what happens. The goal is to find out whether the software can handle unusual input safely, without crashing, failing or exposing security vulnerabilities. 
 
-**Anna:** Why does that matter? Three reasons, which are the three boxes. First, it helps detect input validation problems, crashes and security weaknesses. Second, it's commonly used on applications, APIs, file parsers and network protocols, so anything that reads input from the outside. Third, itmakes software more robust and reliable by testing conditions nobody planned for.
+**Anna:** Why does that matter? Three reasons, which are the three boxes. First, it helps detect input validation problems, crashes and security weaknesses. Second, it's commonly used on applications, APIs, file parsers and network protocols, so anything that reads input from the outside. Third, it makes software more robust and reliable by testing conditions nobody planned for.
 
 **Anna:** Whenever your program reads a file, a network packet or a form field, someone else controls that input. Fuzzing asks: what happens when it's garbage?
 
@@ -127,7 +127,7 @@ wc -c /tmp/min
 
 **Anna:** That made him curious. He and his students wrote a program that threw random characters at standard Unix utilities and published the results in 1990. Somewhere between a quarter and a third of the tools crashed or hung.  That's where the word 'fuzz' comes from.
 
-**Anna:** So fuzzing started with a very dumb idea, random data, and it worked. Today's fuzzers are much smarter, and some, like Google's OSS-Fuzz, run continuously on open-source projects. You'll meet one of them in a few minutes.
+**Anna:** So fuzzing started with a very dumb idea, random data, and it worked. Today's fuzzers are much smarter, and some, like Google's OSS-Fuzz, run continuously on open-source projects. 
 
 ### Slide 5: The fuzz testing process (Anna, 3 min)
 
