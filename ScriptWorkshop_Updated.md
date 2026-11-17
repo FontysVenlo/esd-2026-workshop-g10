@@ -311,19 +311,8 @@ Explain each frame from left to right while reading them off the board.
 
 ### Slide 12: Exercise 1, become the fuzzer (Anna starts, both, 8 min)
 
-**Anna:** Now it's your turn to be the fuzzer. Work in pairs for 3 minutes. On the screen is a test application with a username field and an age field. Your mission has three steps: think, break, record. Think of unusual inputs, try to trigger unexpected behaviour, and write down anything interesting.
+**Anna:** Now it's your turn to be the fuzzer. Work in pairs or by yourself for the next 20 minutes. To help you get started we have prepared a little guide. 
 
-**Francesco:** To help you, think about three things. Format: what if it's text instead of a number, or contains special characters? Length: what if it's empty or a million characters long? Value: what if it's zero, negative, huge, or right on a boundary like 149, 150 and 151? Start now.
-
-[3 minutes. Walk around and ask pairs what they have.]
-
-**Anna:** Time. Who has the weirdest input? [Write answers on the board in three columns: format, length, value. Take 4 minutes.]
-
-**Francesco:** Notice what you did: you generated inputs, tried them, watched for strange behaviour and recorded the interesting ones. That's the fuzz testing process from slide 5, done by hand. You found a handful in three minutes. Now let's see a fuzzer do it.
-
-### Break, 0:48 to 0:52
-
-[Both: help anyone with Docker problems. Keep the commands from slide 12 on screen.]
 
 ### Slide 13: Exercise 2, find the crash (Anna starts, both circulate, 20 min) NEW
 
@@ -339,7 +328,7 @@ Explain each frame from left to right while reading them off the board.
 
 **Anna:** For the next 20 minutes you'll fuzz a second program, but this time you don't get to read the source first. The task is on the slide. Run AFL++ on it, look at the crashes it saves, and from those crash files alone, work out what rule makes the program crash. Only then open the code and check your guess. The commands are on screen and in the participant README.
 
-**Francesco:** Fast pairs: when you're done, do the stretch task. We'll walk around, so put your hand up if you're stuck.
+**Francesco:**  We'll walk around, so put your hand up if you're stuck.
 
 [Circulate. Questions to ask pairs:]
 
@@ -351,7 +340,6 @@ Explain each frame from left to right while reading them off the board.
 
 **Francesco:** Let's wrap up. The program crashes whenever it reads 8 or more bytes. Who guessed that from the crash files? [Hands.] And what did afl-tmin give you? [Expect: 8 bytes.] The fuzzer found a crash and then shrank it to the smallest input that still breaks the program, which is exactly what you want to paste into a bug report.
 
-## 5. Script, slide by slide (part 3: wrap-up, 1:12 to 1:30)
 
 ### Slide 14: Why use fuzz testing? (Francesco, 3 min)
 
