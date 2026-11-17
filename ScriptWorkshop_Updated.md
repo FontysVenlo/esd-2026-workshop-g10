@@ -304,7 +304,12 @@ od -c $f
 - **It takes longer than 20 seconds to find the crash:** stop it anyway once "saved crashes" shows 1, or play your recording.
 
 
-### Slide 11: Exercise 1, become the fuzzer (Anna starts, both, 8 min)
+### Slide 11: Understanding the fuzzer (Francesco)
+
+Explain each frame from left to right while reading them off the board.
+
+
+### Slide 12: Exercise 1, become the fuzzer (Anna starts, both, 8 min)
 
 **Anna:** Now it's your turn to be the fuzzer. Work in pairs for 3 minutes. On the screen is a test application with a username field and an age field. Your mission has three steps: think, break, record. Think of unusual inputs, try to trigger unexpected behaviour, and write down anything interesting.
 
@@ -320,7 +325,7 @@ od -c $f
 
 [Both: help anyone with Docker problems. Keep the commands from slide 12 on screen.]
 
-### Slide 12: Exercise 2, find the crash (Anna starts, both circulate, 20 min) NEW
+### Slide 13: Exercise 2, find the crash (Anna starts, both circulate, 20 min) NEW
 
 **Slide content:** title 'Find the crash', the tasks below, and the line 'No peeking at exercises/participant/participant.c until task 5!'.
 
@@ -348,13 +353,13 @@ od -c $f
 
 ## 5. Script, slide by slide (part 3: wrap-up, 1:12 to 1:30)
 
-### Slide 13: Why use fuzz testing? (Francesco, 3 min)
+### Slide 14: Why use fuzz testing? (Francesco, 3 min)
 
 **Francesco:** So why would you use fuzz testing? Four reasons, and you've just seen all of them. First, it finds the unexpected: problems developers may not have anticipated, which is why a hand-written test list will always miss some. Second, automation: look at the 'exec speed' you saw in the demo. Large numbers of inputs, thousands or even millions, can be generated and tested without anyone sitting there. Third, security: malformed input can expose crashes, unsafe behaviour and vulnerabilities, which is why fuzzing is so popular for file parsers and network code. The OWASP community page lists this too. Fourth, reproducibility: the failing input was saved, we replayed it, and afl-tmin shrank it. That makes debugging easier and prevents the bug returning.
 
 **Francesco:** And again: another tool in the toolbox, not a replacement.
 
-### Slide 14: Fuzz testing limitations (Anna, 4 min)
+### Slide 15: Fuzz testing limitations (Anna, 4 min)
 
 **Anna:** Fuzzing isn't magic, and the OWASP material is clear about that. First, it can miss logical bugs. Think about what our fuzzer saw: only whether the program crashed. If a program returned the wrong answer without crashing, AFL++ would never notice. Second, time and resources: running thousands or millions of cases needs computing power and time. Third, false positives and noisy results: some failures aren't serious and still need investigating.
 
@@ -362,7 +367,7 @@ od -c $f
 
 **Anna:** A question for you: which of these did you notice during the exercise? [Take one or two answers.]
 
-### Slide 15: Kahoot quiz (Anna, 7 min)
+### Slide 16: Kahoot quiz (Anna, 7 min)
 
 **Anna:** Time to see what stuck. Open kahoot.it on your phone or laptop and enter the PIN on the screen. Use a nickname, nothing offensive please. There are eight questions, faster correct answers get more points, and the winner gets glory.
 
@@ -370,7 +375,7 @@ od -c $f
 
 **Francesco:** Well done. [Name the winners.]
 
-### Slide 16: Conclusions (both, 3 min) NEW
+### Slide 17: Conclusions (both, 3 min) NEW
 
 **Slide content:** four takeaways. (1) Fuzzing feeds random, invalid or unexpected input and watches for failures. (2) Mutation or generation based, dumb or smart; AFL++ is coverage-guided. (3) It complements unit, integration and system tests, it doesn't replace them. (4) Saved inputs make bugs reproducible. Also the repo link.
 
@@ -380,7 +385,7 @@ od -c $f
 
 **Francesco:** And you've done it: you broke an application by hand, watched AFL++ find a crash in seconds, then found and shrank a crash yourselves. Next time you write code that reads a file, a network message or a form field, ask yourself: what happens if this input is garbage?
 
-### Slide 17: Sources and questions (both, 1 min) NEW
+### Slide 18: Sources and questions (both, 1 min) NEW
 
 **Anna:** Our sources are on the screen and in the README of the repository, together with all the code from today.
 
