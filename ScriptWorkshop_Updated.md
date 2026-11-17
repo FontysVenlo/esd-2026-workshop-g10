@@ -137,7 +137,7 @@ wc -c /tmp/min
 
 ### Slide 6: Types of fuzz testing (Anna, 3 min)
 
-**Anna:** There are several ways to classify fuzzers. The survey by Li, Zhao and Zhang that we used for this section describes many of them. We'll look at four.
+**Anna:** There are several ways to classify fuzzers. We'll look at four.
 
 **Anna:** Mutation-based fuzzing starts from valid input and changes, deletes or inserts values. For example it takes 25 and turns it into 2-5. It shows how the program copes with corrupted input.
 
