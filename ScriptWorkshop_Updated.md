@@ -151,7 +151,7 @@ wc -c /tmp/min
 
 ### Slide 7: How is fuzz testing different? (Francesco, 4 min)
 
-**Francesco:** Thanks Anna. You all know unit, integration and system testing, so let's compare. Who has written a unit test? [Hands.] Good.
+**Francesco:** Thanks Anna. You all know unit, integration and system testing, so let's compare. Who has ever written a unit test? [wait for them to raise hands.] Good.
 
 **Francesco:** Unit testing checks individual functions or components with cases the developer defines. Integration testing checks components working together, so the interactions between parts. System testing checks the whole application, end to end. Fuzz testing explores unexpected or malformed inputs and searches for failures nobody anticipated.
 
