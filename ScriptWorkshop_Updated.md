@@ -295,7 +295,7 @@ od -c $f
 
 **Francesco says:** "So in a few seconds a fuzzer found a bug without reading the code."
 
-**Anna says:** "One thing to remember: it knew the program crashed, but not what 'wrong' means. We'll come back to that in the limitations. Now let's take a 4-minute break, and then you do the same with a program you haven't seen."
+**Anna says:** "One thing to remember: it knew the program crashed, but not what 'wrong' means. We'll come back to that in the limitations. 
 
 #### If something goes wrong
 
