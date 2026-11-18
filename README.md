@@ -16,7 +16,7 @@ Four words you will meet:
 ## Before the workshop
 
 1. Start Docker Desktop.
-2. Clone the workshop repository.
+2. Clone the workshop repository. (this repository)
 3. From the repository root, open the workshop directory and build the image:
 
 ```bash
