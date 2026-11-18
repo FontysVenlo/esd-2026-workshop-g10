@@ -24,8 +24,6 @@ cd FuzzingWorkshop
 docker compose build
 ```
 
-The image is large and may take a while to download, so please do this before the session.
-
 ## Start the workshop container
 
 On your computer, in the `FuzzingWorkshop/` folder, run:
@@ -142,12 +140,6 @@ Now open `exercises/participant/participant.c` and read it. Were you right?
 | 5 | Minimized file size (`wc -c` in step 5) | The smallest input that still crashes |
 | 6 | Your own `printf` tests (step 6) | The exact boundary, confirmed by hand |
 
-## Check yourself
-
-- What is the rule that makes the program crash?
-- Which clue helped you the most?
-- How did AFL++ find the crash without reading the code?
-- Why is the minimized input more useful to a developer than the first crash file?
 
 ## Troubleshooting
 
@@ -157,7 +149,3 @@ Now open `exercises/participant/participant.c` and read it. Were you right?
 - **Output directory already exists:** use a new folder, for example `/tmp/out3`, and use that name in the later commands too.
 - **Seed crashes immediately:** use a shorter seed that doesn't crash.
 - **Docker not running:** start Docker Desktop before using Compose.
-
-## Why this matters
-
-The crashing input files are your evidence. A good bug report contains the input that causes the crash and the steps to reproduce it. That is exactly what you have after step 6: a tiny input and one command that makes the program fail every time.
