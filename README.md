@@ -40,7 +40,7 @@ export AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 AFL_NO_AFFINIT
 
 These three settings tell AFL++ not to complain about things that Docker doesn't allow. You can ignore what they mean.
 
-## Exercise 1: Find the crash (20 minutes)
+## Exercise -  Find the crash (20 minutes)
 
 Work in pairs. **Do not read `exercises/participant/participant.c` until step 7.** The point is to work out the bug from the clues, not from the code.
 
