@@ -15,7 +15,7 @@ Four words you will meet:
 
 ## Before the workshop
 
-1. Install and start Docker Desktop.
+1. Start Docker Desktop.
 2. Clone the workshop repository.
 3. From the repository root, open the workshop directory and build the image:
 
